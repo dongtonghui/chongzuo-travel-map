@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>崇左 · 边境山水慢游记</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --cream: #FAF5ED;
+    --warm-white: #FDF9F3;
+    --charcoal: #1A1A1A;
+    --body-text: #3D3D3D;
+    --muted: #78716C;
+    --terracotta: #C67B5C;
+    --terracotta-light: #E8C4B5;
+    --olive: #6B8E4E;
+    --olive-light: #A8C97F;
+    --amber: #D4A574;
+    --stone: #E7E0D5;
+    --border: #D6CFC5;
+    --shadow: 0 2px 24px rgba(0,0,0,.06);
+    --shadow-lg: 0 8px 48px rgba(0,0,0,.08);
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', 'Source Han Serif SC', serif;
+    color: var(--body-text);
+    background: var(--cream);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: linear-gradient(135deg, #3D5A3C 0%, #2A4030 30%, #1A2F1F 60%, #0D1F12 100%);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 80% 20%, rgba(107,142,78,.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(198,123,92,.1) 0%, transparent 50%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px 120px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin-bottom: 32px;
+    opacity: .8;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 600;
+    color: #FFF;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta-light);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,.65);
+    font-family: Georgia, serif;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 48px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    font-family: Georgia, serif;
+  }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #FFF;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ── Sections ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 48px;
+  }
+  .section-narrow { max-width: 780px; }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: .3em;
+    color: var(--terracotta);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── Route Map ── */
+  .map-container {
+    background: var(--warm-white);
+    border-radius: 4px;
+    box-shadow: var(--shadow-lg);
+    padding: 60px 40px;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(198,123,92,.04) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(107,142,78,.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .map-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .map-svg-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .map-svg-wrap svg { width: 100%; height: auto; display: block; }
+
+  /* ── Day Cards ── */
+  .day-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .day-card {
+    background: var(--warm-white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow .3s;
+  }
+  .day-card:hover { box-shadow: var(--shadow-lg); }
+  .day-card-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+  }
+  .day-card-placeholder {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .day-card-body { padding: 28px 28px 32px; }
+  .day-card-tag {
+    display: inline-block;
+    font-family: Georgia, serif;
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 12px;
+  }
+  .day-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .day-card .time {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+  .day-card p {
+    font-size: 15px;
+    color: var(--body-text);
+    line-height: 1.8;
+  }
+  .day-card .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--stone);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .day-card .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* full width card */
+  .day-card-full {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--warm-white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .day-card-full .day-card-img { height: 100%; min-height: 380px; }
+  .day-card-full .day-card-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+
+  /* ── Food Section ── */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .food-card {
+    background: var(--warm-white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow .3s;
+  }
+  .food-card:hover { box-shadow: var(--shadow-lg); }
+  .food-card-visual {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .food-card-body { padding: 24px; }
+  .food-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .food-card .restaurant {
+    font-size: 13px;
+    color: var(--terracotta);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .food-card p {
+    font-size: 14px;
+    color: var(--body-text);
+    line-height: 1.7;
+  }
+  .food-card .price {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  /* ── Intro Section ── */
+  .intro-text {
+    font-size: 18px;
+    line-height: 2;
+    color: var(--body-text);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .intro-text .dropcap {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 84px;
+    line-height: .8;
+    padding-right: 12px;
+    color: var(--terracotta);
+  }
+
+  .pullquote {
+    max-width: 700px;
+    margin: 64px auto;
+    text-align: center;
+    position: relative;
+    padding: 40px 0;
+  }
+  .pullquote::before {
+    content: '「';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--terracotta-light);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: .4;
+    line-height: 1;
+  }
+  .pullquote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Budget Table ── */
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .budget-table th {
+    text-align: left;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--border);
+  }
+  .budget-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--stone);
+    color: var(--body-text);
+  }
+  .budget-table .amount {
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--charcoal);
+  }
+  .budget-table tr:last-child td {
+    border-bottom: 2px solid var(--charcoal);
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .budget-table tr:last-child .amount {
+    font-size: 24px;
+    color: var(--terracotta);
+  }
+
+  /* ── Itinerary Timeline ── */
+  .timeline {
+    position: relative;
+    padding-left: 48px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -41px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    border: 2px solid var(--cream);
+  }
+  .timeline-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .timeline-desc {
+    font-size: 15px;
+    color: var(--body-text);
+    margin-top: 4px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 80px 48px;
+    background: var(--charcoal);
+    color: rgba(255,255,255,.5);
+    font-size: 14px;
+    font-family: Georgia, serif;
+    line-height: 2;
+  }
+  .footer strong { color: rgba(255,255,255,.8); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .hero { min-height: 500px; }
+    .hero-content { padding: 0 24px 80px; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .hero-stat-num { font-size: 32px; }
+    .section { padding: 60px 24px; }
+    .day-grid { grid-template-columns: 1fr; }
+    .day-card-full { grid-template-columns: 1fr; }
+    .day-card-full .day-card-img { min-height: 240px; }
+    .food-grid { grid-template-columns: 1fr 1fr; }
+    .map-container { padding: 40px 20px; }
+  }
+  @media (max-width: 480px) {
+    .food-grid { grid-template-columns: 1fr; }
+    .timeline { padding-left: 32px; }
+  }
+
+  /* ── Map Marker Pulse ── */
+  @keyframes pulse {
+    0%, 100% { r: 5; opacity: .6; }
+    50% { r: 12; opacity: 0; }
+  }
+  .marker-pulse { animation: pulse 2.5s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Guangxi · China / 2026 Autumn</div>
+    <h1>崇左<em>边境山水慢游记</em></h1>
+    <p class="hero-sub">三天两夜，穿越中越边境的喀斯特画廊——瀑布轰鸣、田园骑行、峡谷漂流、千年古城打铁花</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">天</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">人</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">¥2,855</div>
+        <div class="hero-stat-label">人均</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">个景点</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ INTRO ════════════ -->
+<section class="section section-narrow">
+  <p class="intro-text">
+    <span class="dropcap">崇</span>左，位于广西西南边陲，与越南接壤。这里有亚洲最大的跨国瀑布、比大熊猫更稀有的白头叶猴、千年骆越文明留下的花山岩画，还有被《花千骨》取景后声名鹊起的明仕田园。九月初秋，水量充沛，气温宜人——正是出发的最好时节。
+  </p>
+  <div class="pullquote">
+    <p>不去桂林挤人海，中越边境这个隐世小城美炸了</p>
+  </div>
+</section>
+
+<!-- ════════════ ROUTE MAP ════════════ -->
+<section class="section">
+  <div class="map-container">
+    <h2 class="map-title">路线总览</h2>
+    <div class="map-svg-wrap">
+      <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="shadow1"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity=".12"/></filter>
+          <linearGradient id="route1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C67B5C"/>
+            <stop offset="100%" stop-color="#D4A574"/>
+          </linearGradient>
+          <linearGradient id="route2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6B8E4E"/>
+            <stop offset="100%" stop-color="#8BAF6E"/>
+          </linearGradient>
+        </defs>
+        <!-- Terrain background -->
+        <rect width="900" height="520" fill="#FDF9F3" rx="4"/>
+        <path d="M0,200 Q150,160 300,190 Q450,220 600,180 Q750,140 900,170 L900,520 L0,520Z" fill="#F0EBE0" opacity=".6"/>
+        <path d="M0,280 Q200,240 400,260 Q600,280 800,250 Q850,245 900,248 L900,520 L0,520Z" fill="#E8E2D5" opacity=".5"/>
+        <!-- Waterway hint -->
+        <path d="M100,350 Q250,320 400,340 Q550,360 700,330 Q800,315 850,325" stroke="#B8C9A8" stroke-width="2" fill="none" opacity=".4" stroke-dasharray="8,6"/>
+        <!-- Border line -->
+        <line x1="70" y1="80" x2="70" y2="480" stroke="#D6CFC5" stroke-width="1.5" stroke-dasharray="4,8" opacity=".6"/>
+        <text x="60" y="290" font-family="Georgia,serif" font-size="10" fill="#B8B0A5" text-anchor="end" transform="rotate(-90,60,290)">越南 Vietnam</text>
+
+        <!-- Route Day1: Airport → Chongzuo → Rafting → Ancient City -->
+        <path d="M750,300 L620,270 L530,240" stroke="url(#route1)" stroke-width="2.5" fill="none" stroke-dasharray="8,4" opacity=".7"/>
+        <path d="M530,240 L480,210 L440,230" stroke="url(#route1)" stroke-width="2.5" fill="none" stroke-dasharray="8,4" opacity=".7"/>
+
+        <!-- Route Day2: Chongzuo → Detian → Mingshi -->
+        <path d="M530,240 L400,170 L360,190 L310,160" stroke="url(#route2)" stroke-width="2.5" fill="none" opacity=".7"/>
+        <path d="M310,160 L280,200 L260,240" stroke="url(#route2)" stroke-width="2.5" fill="none" opacity=".7"/>
+
+        <!-- Route Day3: Chongzuo → Monkey → Airport -->
+        <path d="M530,240 L520,330 L550,370 L750,300" stroke="#D4A574" stroke-width="2" fill="none" stroke-dasharray="6,4" opacity=".5"/>
+
+        <!-- NANNING AIRPORT -->
+        <circle cx="750" cy="300" r="16" fill="#FDF9F3" stroke="#3D3D3D" stroke-width="1.5" filter="url(#shadow1)"/>
+        <circle cx="750" cy="300" r="5" fill="#3D3D3D"/>
+        <circle cx="750" cy="300" r="5" fill="none" stroke="#3D3D3D" stroke-width="1.5" class="marker-pulse"/>
+        <text x="750" y="340" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="13" font-weight="600" fill="#1A1A1A">南宁吴圩</text>
+        <text x="750" y="356" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#999">✈️ 往返枢纽</text>
+
+        <!-- CHONGZUO -->
+        <circle cx="530" cy="240" r="20" fill="#FDF9F3" stroke="#C67B5C" stroke-width="2" filter="url(#shadow1)"/>
+        <circle cx="530" cy="240" r="7" fill="#C67B5C"/>
+        <circle cx="530" cy="240" r="7" fill="none" stroke="#C67B5C" stroke-width="1.5" class="marker-pulse" style="animation-delay:.3s"/>
+        <text x="530" y="285" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="14" font-weight="600" fill="#1A1A1A">崇左市区</text>
+        <text x="530" y="301" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#999">🏨 🚗 基地</text>
+
+        <!-- LONGTENG RAFTING -->
+        <circle cx="440" cy="230" r="14" fill="#FDF9F3" stroke="#6B8E4E" stroke-width="1.5" filter="url(#shadow1)"/>
+        <circle cx="440" cy="230" r="4.5" fill="#6B8E4E"/>
+        <text x="440" y="255" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#3D3D3D">新和龙腾漂流 🛶</text>
+        <text x="440" y="270" text-anchor="middle" font-size="10" fill="#999">Day 1</text>
+
+        <!-- ANCIENT CITY -->
+        <circle cx="480" cy="210" r="14" fill="#FDF9F3" stroke="#C67B5C" stroke-width="1.5" filter="url(#shadow1)"/>
+        <circle cx="480" cy="210" r="4.5" fill="#C67B5C"/>
+        <text x="480" y="190" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#3D3D3D">太平古城 🏮</text>
+        <text x="480" y="175" text-anchor="middle" font-size="10" fill="#999">Day 1 夜</text>
+
+        <!-- DETIAN -->
+        <circle cx="310" cy="160" r="18" fill="#FDF9F3" stroke="#3D3D3D" stroke-width="1.5" filter="url(#shadow1)"/>
+        <circle cx="310" cy="160" r="6" fill="#3D3D3D"/>
+        <circle cx="310" cy="160" r="6" fill="none" stroke="#C67B5C" stroke-width="1.5" class="marker-pulse" style="animation-delay:.7s"/>
+        <text x="260" y="155" text-anchor="end" font-family="'Playfair Display',Georgia,serif" font-size="13" font-weight="600" fill="#1A1A1A">德天跨国瀑布 💦</text>
+        <text x="260" y="171" text-anchor="end" font-family="Georgia,serif" font-size="10" fill="#999">Day 2 · 亚洲最大跨国瀑布</text>
+
+        <!-- MINGSHI -->
+        <circle cx="260" cy="240" r="14" fill="#FDF9F3" stroke="#6B8E4E" stroke-width="1.5" filter="url(#shadow1)"/>
+        <circle cx="260" cy="240" r="4.5" fill="#6B8E4E"/>
+        <text x="220" y="245" text-anchor="end" font-family="Georgia,serif" font-size="11" fill="#3D3D3D">明仕田园 🚴</text>
+        <text x="220" y="260" text-anchor="end" font-size="10" fill="#999">Day 2 · 骑行/竹筏</text>
+
+        <!-- MONKEY -->
+        <circle cx="550" cy="370" r="16" fill="#FDF9F3" stroke="#3D3D3D" stroke-width="1.5" filter="url(#shadow1)"/>
+        <circle cx="550" cy="370" r="5" fill="#C67B5C"/>
+        <circle cx="550" cy="370" r="5" fill="none" stroke="#C67B5C" stroke-width="1.5" class="marker-pulse" style="animation-delay:1s"/>
+        <text x="550" y="405" text-anchor="middle" font-family="'Playfair Display',Georgia,serif" font-size="13" font-weight="600" fill="#1A1A1A">白头叶猴保护区 🐒</text>
+        <text x="550" y="421" text-anchor="middle" font-size="10" fill="#999">Day 3 · 比熊猫稀有</text>
+
+        <!-- Legend -->
+        <rect x="650" y="420" width="220" height="85" rx="4" fill="#FDF9F3" stroke="#E7E0D5" stroke-width="1"/>
+        <line x1="665" y1="440" x2="700" y2="440" stroke="#C67B5C" stroke-width="2" stroke-dasharray="6,3"/>
+        <text x="710" y="444" font-family="Georgia,serif" font-size="10" fill="#78716C">Day 1 路线</text>
+        <line x1="665" y1="460" x2="700" y2="460" stroke="#6B8E4E" stroke-width="2"/>
+        <text x="710" y="464" font-family="Georgia,serif" font-size="10" fill="#78716C">Day 2 路线</text>
+        <line x1="665" y1="480" x2="700" y2="480" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="710" y="484" font-family="Georgia,serif" font-size="10" fill="#78716C">Day 3 返程</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ITINERARY ════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">Itinerary</div>
+    <h2 class="section-title">三天两夜，不急不赶</h2>
+    <p class="section-sub">9月3日晚出发，9月6日下午返沪</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <p class="timeline-date">Day 0 · 9/3 周四晚</p>
+      <p class="timeline-desc">上海浦东/虹桥 ✈️ 南宁吴圩，午夜抵达后机场酒店休息。</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-date">Day 1 · 9/4 周五</p>
+      <p class="timeline-desc">早班动车至崇左南站取车 → 新和龙腾漂流🛶 → 太平古城🏮 + 非遗打铁花</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-date">Day 2 · 9/5 周六</p>
+      <p class="timeline-desc">自驾至德天跨国瀑布💦 → 硕龙镇午餐 → 明仕田园骑行🚴 → 返回崇左</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-date">Day 3 · 9/6 周日</p>
+      <p class="timeline-desc">白头叶猴保护区看猴🐒 → 还车 → 动车回南宁 → ✈️ 返沪</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 1 ════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">Day 1 / Friday</div>
+    <h2 class="section-title">9月4日 · 漂流与古城</h2>
+    <p class="section-sub">河陆空三连漂 + 千年古城非遗打铁花</p>
+  </div>
+  <div class="day-grid">
+    <div class="day-card">
+      <img class="day-card-img" src="assets/img/rafting_pexels.jpg" alt="漂流" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block;object-position:center 40%;">
+      <div class="day-card-placeholder" style="display:none;background:linear-gradient(135deg,#4A7C59 0%,#6B8E4E 40%,#8BAF6E 70%,#A8C97F 100%);color:#FFF;font-size:18px;font-family:'Playfair Display',serif;flex-direction:column;gap:8px;">
+        <span style="font-size:56px;">🛶</span>
+        <span>新和龙腾漂流</span>
+      </div>
+      <div class="day-card-body">
+        <span class="day-card-tag">漂流体验</span>
+        <h3>新和龙腾漂流</h3>
+        <p class="time">10:00–15:00 · 崇左市江州区新和镇</p>
+        <p>全国首个「河陆空」三连漂。高山漂流俯冲而下，空中玻璃漂流凌空飞驰，原生态河道漂流穿行喀斯特峡谷。附赠彩虹滑道、山道滑车和玻璃栈道——一票通玩，¥108/人。</p>
+        <div class="meta">
+          <span>🎫 ¥108/人</span>
+          <span>⏱ 3–4 小时</span>
+          <span>⚠️ 带换洗衣服</span>
+        </div>
+      </div>
+    </div>
+    <div class="day-card">
+      <img class="day-card-img" src="assets/img/202309_A_Hanfu_rental_shop_at_Taiping_Ancient_City,_Chongzuo.jpg" alt="太平古城" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block">
+      <div class="day-card-placeholder" style="display:none;background:linear-gradient(135deg,#8B4513,#C67B5C,#D4875E);color:#FFF;font-size:18px;font-family:'Playfair Display',serif;flex-direction:column;gap:8px;">
+        <span style="font-size:56px;">🏮</span>
+        <span>太平古城</span>
+      </div>
+      <div class="day-card-body">
+        <span class="day-card-tag">古城夜游</span>
+        <h3>太平古城</h3>
+        <p class="time">17:30–21:00 · 崇左市江州区 · 免费</p>
+        <p>壮族与骆越文化融合的古城，入夜灯火璀璨。每周六晚 20:30 上演非遗打铁花——漫天金光洒落左江水面，是此行最值得期待的瞬间。</p>
+        <div class="meta">
+          <span>🎫 免费</span>
+          <span>🎆 打铁花 20:30</span>
+          <span>📸 夜景出片</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 2 ════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">Day 2 / Saturday</div>
+    <h2 class="section-title">9月5日 · 瀑布与田园</h2>
+    <p class="section-sub">亚洲最大跨国瀑布 + 喀斯特田园骑行</p>
+  </div>
+  <div class="day-card-full">
+    <img class="day-card-img" src="assets/img/Detian_waterfall_(378517965).jpg" alt="德天跨国瀑布" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block">
+    <div class="day-card-placeholder" style="display:none;background:linear-gradient(135deg,#1A5276,#2980B9,#3498DB);color:#FFF;font-size:18px;font-family:'Playfair Display',serif;flex-direction:column;gap:8px;min-height:380px;">
+      <span style="font-size:56px;">💦</span>
+      <span>德天跨国瀑布</span>
+    </div>
+    <div class="day-card-body">
+      <span class="day-card-tag">自然奇观</span>
+      <h3>德天跨国瀑布</h3>
+      <p class="time">10:30–13:00 · 大新县硕龙镇 · 中越边境</p>
+      <p>亚洲第一、世界第四大跨国瀑布，年均水量是黄果树瀑布的三倍。乘竹筏驶近瀑布正下方，漫天水雾扑面而来，左侧是中国的德天瀑布，右侧便是越南的板约瀑布——两国水幕隔河相望，奔腾而下。九月水量充沛，是最佳观赏季。</p>
+      <div class="meta">
+        <span>🎫 ¥80/人</span>
+        <span>🚣 竹筏 ¥30</span>
+        <span>⏱ 2–3 小时</span>
+        <span>🇻🇳 中越边境</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card-full" style="margin-top:32px;">
+    <div class="day-card-body">
+      <span class="day-card-tag">田园风光</span>
+      <h3>明仕田园</h3>
+      <p class="time">14:30–17:00 · 大新县堪圩乡</p>
+      <p>典型的桂南喀斯特地貌，峰林倒映稻田水面，被称为「小桂林」。《花千骨》曾在此取景。租一辆自行车沿田间绿道骑行（¥10/天），或乘竹筏漂流明仕河。傍晚 17:00–18:00 逆光时分，稻浪与峰林在金色光线中构成绝美画面。</p>
+      <div class="meta">
+        <span>🎫 免费入园</span>
+        <span>🚴 单车 ¥10/天</span>
+        <span>🚣 竹筏 ¥120</span>
+        <span>📸 日落逆光</span>
+      </div>
+    </div>
+    <img class="day-card-img" src="assets/img/The_Towers_of_Trang_An_(154897).jpg" alt="明仕田园" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block">
+    <div class="day-card-placeholder" style="display:none;background:linear-gradient(135deg,#6B8E4E,#A8C97F,#C5D8A0);color:#FFF;font-size:18px;font-family:'Playfair Display',serif;flex-direction:column;gap:8px;min-height:380px;">
+      <span style="font-size:56px;">🚴</span>
+      <span>明仕田园</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 3 ════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">Day 3 / Sunday</div>
+    <h2 class="section-title">9月6日 · 灵猴与返程</h2>
+    <p class="section-sub">比大熊猫更稀有的白头叶猴</p>
+  </div>
+  <div class="day-grid" style="grid-template-columns:1fr;max-width:640px;margin:0 auto;">
+    <div class="day-card">
+      <img class="day-card-img" src="assets/img/Trachypithecus_poliocephalus_white-headed_langur_Langur.jpg" alt="白头叶猴" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block;object-position:center 30%;">
+      <div class="day-card-placeholder" style="display:none;background:linear-gradient(135deg,#C67B5C,#E8A87C,#F0C8A0);color:#FFF;font-size:18px;font-family:'Playfair Display',serif;flex-direction:column;gap:8px;">
+        <span style="font-size:56px;">🐒</span>
+        <span>白头叶猴国家级自然保护区</span>
+      </div>
+      <div class="day-card-body">
+        <span class="day-card-tag">野生动物</span>
+        <h3>白头叶猴保护区</h3>
+        <p class="time">09:00–10:30 · 崇左市江州区</p>
+        <p>白头叶猴是中国特有物种，全球仅存于崇左左江与明江之间不足 200 平方公里的喀斯特石山中，比大熊猫更加珍稀。它们每天上午 9 点准时下山觅食——站在甘蔗地里静观「莫西干白发」在树枝间腾跃，是此行最难忘的自然体验。</p>
+        <div class="meta">
+          <span>🎫 ¥80/人</span>
+          <span>🚌 观光车 ¥30</span>
+          <span>⏱ 9点觅食</span>
+          <span>📸 保持安静</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOD ════════════ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-num">Gastronomy</div>
+    <h2 class="section-title">味蕾边境线</h2>
+    <p class="section-sub">从壮乡簸箕宴到越南滴漏咖啡，中越风味在此交汇</p>
+  </div>
+  <div class="food-grid">
+    <!-- 1 -->
+    <div class="food-card">
+      <img class="day-card-img" src="assets/img/roasted_pig_crispy_Chinese_food_HK_SW_上環_Sheung_Wan_康威花.jpg" alt="金牌烤猪" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="height:180px;display:block;">
+      <div class="food-card-visual" style="display:none;background:linear-gradient(135deg,#8B4513,#A0522D,#C67B5C);">
+        <span>🥩</span>
+      </div>
+      <div class="food-card-body">
+        <h4>金牌烤猪</h4>
+        <p class="restaurant">左记正宗渠黎金牌烤猪</p>
+        <p>脆皮金黄、肉质鲜嫩，蘸上崇左特有的酸粥——发酵米粥的微酸中和油脂，一口入魂。搭配酸粥猪肚和凉拌粉，人均 ¥60–90。</p>
+        <p class="price">📍 崇左市区 · ¥60–90/人</p>
+      </div>
+    </div>
+    <!-- 2 -->
+    <div class="food-card">
+      <img class="day-card-img" src="assets/img/grilled_fish_banana_leaf_food_DFC_4122_Grilled_whole_fi.jpg" alt="香茅烤鱼" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="height:180px;display:block;object-position:center 45%;">
+      <div class="food-card-visual" style="display:none;background:linear-gradient(135deg,#2E7D32,#4CAF50,#81C784);">
+        <span>🐟</span>
+      </div>
+      <div class="food-card-body">
+        <h4>香茅烤鱼</h4>
+        <p class="restaurant">老街土菜馆 / 越姆娘</p>
+        <p>新鲜河鱼裹香茅草炭火慢烤，鱼肉吸收香茅的清甜与炭火的焦香。配一碗酸汤牛肉，是德天瀑布旁最地道的边境午餐。</p>
+        <p class="price">📍 硕龙镇 / 德天景区 · ¥50–80/人</p>
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="food-card">
+      <img class="day-card-img" src="assets/img/passion_fruit_drink.jpg" alt="百香果" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="height:180px;display:block;object-position:center 50%;">
+      <div class="food-card-visual" style="display:none;background:linear-gradient(135deg,#FF8F00,#FFB300,#FFCA28);">
+        <span>🍖</span>
+      </div>
+      <div class="food-card-body">
+        <h4>百香果排骨</h4>
+        <p class="restaurant">越姆娘好吃餐厅</p>
+        <p>崇左独创——新鲜百香果的酸甜果肉包裹优质肋排，果香与肉香交融，甜而不腻。德天瀑布景区内的隐藏菜单，人均 ¥50–70。</p>
+        <p class="price">📍 德天瀑布景区 · ¥50–70/人</p>
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="food-card">
+      <img class="day-card-img" src="assets/img/hotpot.jpg" alt="越南火锅" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="height:180px;display:block;object-position:center 50%;">
+      <div class="food-card-visual" style="display:none;background:linear-gradient(135deg,#D84315,#E64A19,#FF7043);">
+        <span>🍲</span>
+      </div>
+      <div class="food-card-body">
+        <h4>越南帽子火锅</h4>
+        <p class="restaurant">阮如玉越南火锅</p>
+        <p>硕龙镇必打卡——独特的「帽子」造型铜锅，香茅椰浆汤底涮海鲜和牛肉。边境线上的越南风味，人均 ¥70–80。</p>
+        <p class="price">📍 硕龙镇 · ¥70–80/人</p>
+      </div>
+    </div>
+    <!-- 5 -->
+    <div class="food-card">
+      <img class="day-card-img" src="assets/img/Vietnamese_coffee_drip_Vietnamese_Hot_Drip_Coffee_-_The.jpg" alt="越南滴漏咖啡" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="height:180px;display:block;object-position:center 40%;">
+      <div class="food-card-visual" style="display:none;background:linear-gradient(135deg,#5D4037,#795548,#A1887F);">
+        <span>☕</span>
+      </div>
+      <div class="food-card-body">
+        <h4>越南滴漏咖啡</h4>
+        <p class="restaurant">春田越南菜馆</p>
+        <p>午后小憩——看着咖啡一滴一滴落入炼乳，边境时光在此慢下来。搭配越南春卷和河粉，人均 ¥60–80。</p>
+        <p class="price">📍 崇左市区 · ¥60–80/人</p>
+      </div>
+    </div>
+    <!-- 6 -->
+    <div class="food-card">
+      <img class="day-card-img" src="assets/img/noodle_soup.jpg" alt="米粉" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="height:180px;display:block;object-position:center 50%;">
+      <div class="food-card-visual" style="display:none;background:linear-gradient(135deg,#BF360C,#D84315,#E64A19);">
+        <span>🍜</span>
+      </div>
+      <div class="food-card-body">
+        <h4>老友粉</h4>
+        <p class="restaurant">雷平姐妹粉店</p>
+        <p>崇左早餐之王——酸笋、豆豉、辣椒、鲜肉爆炒后加汤煮粉，酸辣鲜香。三天行程至少吃两顿，人均 ¥15–25。</p>
+        <p class="price">📍 崇左市区 · ¥15–25/人</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ BUDGET ════════════ -->
+<section class="section section-narrow">
+  <div class="section-header">
+    <div class="section-num">Budget</div>
+    <h2 class="section-title">预算总览</h2>
+    <p class="section-sub">人均 ¥2,855，预算 ¥3,300，余量充足</p>
+  </div>
+  <table class="budget-table">
+    <thead>
+      <tr><th>项目</th><th>明细</th><th class="amount">人均</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>✈️ 往返机票</td><td>上海 ↔ 南宁</td><td class="amount">¥1,200</td></tr>
+      <tr><td>🚄 高铁</td><td>机场 ↔ 崇左</td><td class="amount">¥60</td></tr>
+      <tr><td>🚗 租车</td><td>2天 + 油费</td><td class="amount">¥300</td></tr>
+      <tr><td>🏨 住宿</td><td>3晚 × 2间</td><td class="amount">¥433</td></tr>
+      <tr><td>🎫 门票</td><td>漂流 + 瀑布 + 猴园 + 骑行</td><td class="amount">¥278</td></tr>
+      <tr><td>🍜 餐饮</td><td>3天 × ¥150/天</td><td class="amount">¥450</td></tr>
+      <tr><td>🎒 其他</td><td>零食、手信、杂费</td><td class="amount">¥133</td></tr>
+      <tr><td><strong>合计</strong></td><td></td><td class="amount"><strong>¥2,855</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--muted);font-style:italic;">人均省 ¥445，可升级酒店或加一顿好餐厅</p>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <p>崇左 · 边境山水慢游记</p>
+  <p>2026年9月3日 – 9月6日 · <strong>3人同行</strong> · 人均 ¥2,855</p>
+  <p style="margin-top:16px;font-size:12px;opacity:.4;">行程规划由 Hermes Agent 生成 · 图片来自 Wikimedia Commons (CC BY-SA / CC BY / Public Domain)</p>
+</footer>
+
+</body>
+</html>
