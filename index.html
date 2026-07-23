@@ -254,6 +254,22 @@
     color: var(--muted);
   }
   .day-card .meta span { display: flex; align-items: center; gap: 6px; }
+  .guide-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1.5px solid var(--terracotta);
+    border-radius: 4px;
+    color: var(--terracotta);
+    font-family: Georgia, serif;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all .25s;
+  }
+  .guide-btn:hover { background: var(--terracotta); color: #FFF; }
+  .guide-btn::after { content: '→'; font-size: 13px; }
 
   /* full width card */
   .day-card-full {
@@ -671,6 +687,7 @@
           <span>⏱ 3–4 小时</span>
           <span>⚠️ 带换洗衣服</span>
         </div>
+        <a class="guide-btn" href="https://you.ctrip.com/sight/chongzuo837/111709943.html" target="_blank">查看攻略</a>
       </div>
     </div>
     <div class="day-card">
@@ -689,6 +706,7 @@
           <span>🎆 打铁花 20:30</span>
           <span>📸 夜景出片</span>
         </div>
+        <a class="guide-btn" href="https://you.ctrip.com/travels/chongzuo837/4172601.html" target="_blank">查看攻略</a>
       </div>
     </div>
   </div>
@@ -718,6 +736,7 @@
         <span>⏱ 2–3 小时</span>
         <span>🇻🇳 中越边境</span>
       </div>
+      <a class="guide-btn" href="https://you.ctrip.com/travels/daxin963/4104988.html" target="_blank">查看攻略</a>
     </div>
   </div>
 
@@ -733,6 +752,7 @@
         <span>🚣 竹筏 ¥120</span>
         <span>📸 日落逆光</span>
       </div>
+      <a class="guide-btn" href="https://you.ctrip.com/travels/guangxi100052/4131834.html" target="_blank">查看攻略</a>
     </div>
     <img class="day-card-img" src="assets/img/The_Towers_of_Trang_An_(154897).jpg" alt="明仕田园" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block">
     <div class="day-card-placeholder" style="display:none;background:linear-gradient(135deg,#6B8E4E,#A8C97F,#C5D8A0);color:#FFF;font-size:18px;font-family:'Playfair Display',serif;flex-direction:column;gap:8px;min-height:380px;">
@@ -767,6 +787,7 @@
           <span>⏱ 9点觅食</span>
           <span>📸 保持安静</span>
         </div>
+        <a class="guide-btn" href="https://you.ctrip.com/travels/guangxi100052/4171119.html" target="_blank">查看攻略</a>
       </div>
     </div>
   </div>
@@ -858,6 +879,9 @@
         <p class="price">📍 崇左市区 · ¥15–25/人</p>
       </div>
     </div>
+  </div>
+  <div style="text-align:center;margin-top:32px;">
+    <a class="guide-btn" href="http://www.youxiake.com/gonglue/view?id=5187" target="_blank" style="font-size:16px;padding:14px 32px;">查看完整美食攻略</a>
   </div>
 </section>
 
