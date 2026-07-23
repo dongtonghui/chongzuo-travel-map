@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>崇左 · 边境山水慢游记</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
@@ -155,10 +154,19 @@
     background: var(--warm-white);
     border-radius: 4px;
     box-shadow: var(--shadow-lg);
-    padding: 50px 40px 40px;
+    padding: 60px 40px;
     margin-bottom: 60px;
     position: relative;
     overflow: hidden;
+  }
+  .map-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(198,123,92,.04) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(107,142,78,.04) 0%, transparent 50%);
+    pointer-events: none;
   }
   .map-title {
     font-family: 'Playfair Display', serif;
@@ -166,43 +174,16 @@
     font-weight: 600;
     color: var(--charcoal);
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 48px;
   }
-  #map {
+  .map-svg-wrap {
+    position: relative;
     width: 100%;
-    height: 520px;
-    border-radius: 4px;
-    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
   }
-  .leaflet-popup-content {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--body-text);
-    margin: 8px 12px;
-  }
-  .leaflet-popup-content strong {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    color: var(--charcoal);
-    display: block;
-    margin-bottom: 2px;
-  }
-  .map-legend {
-    position: absolute;
-    bottom: 56px;
-    right: 56px;
-    background: rgba(255,255,255,.95);
-    padding: 14px 18px;
-    border-radius: 4px;
-    box-shadow: var(--shadow);
-    font-family: Georgia, serif;
-    font-size: 12px;
-    line-height: 1.8;
-    z-index: 1000;
-    pointer-events: none;
-  }
-  .map-legend span { display: inline-block; width: 20px; height: 3px; vertical-align: middle; margin-right: 8px; border-radius: 2px; }
+  .map-svg-wrap svg { width: 100%; height: auto; display: block; }
+  .dist-label { font-family: Georgia,serif; font-size: 10px; fill: #999; }
 
   /* ── Day Cards ── */
   .day-grid {
@@ -852,61 +833,6 @@
   <p>2026年9月3日 – 9月6日 · <strong>3人同行</strong> · 人均 ¥2,855</p>
   <p style="margin-top:16px;font-size:12px;opacity:.4;">行程规划由 Hermes Agent 生成 · 图片来自 Wikimedia Commons (CC BY-SA / CC BY / Public Domain)</p>
 </footer>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script>
-(function(){
-  var map = L.map('map', { scrollWheelZoom: false }).setView([22.55, 107.5], 9);
-
-  // Light tile - CartoDB Positron (Baidu-like light gray)
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-    maxZoom: 18
-  }).addTo(map);
-
-  var day1Color = '#C67B5C', day2Color = '#6B8E4E', day3Color = '#D4A574';
-
-  // Bigger, labeled markers
-  var createIcon = function(label, bg) {
-    return L.divIcon({
-      html: '<div style="background:'+bg+';color:#FFF;border-radius:6px;padding:4px 10px;font-size:13px;font-family:Georgia,serif;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.15);border:2px solid #FFF;">'+label+'</div>',
-      className: '',
-      iconSize: [0,0],
-      iconAnchor: [0,0]
-    });
-  };
-
-  // Airport - dark
-  L.marker([22.609,108.181], { icon: createIcon('✈️ 南宁吴圩机场','#3D3D3D') }).addTo(map)
-    .bindPopup('<strong>南宁吴圩机场</strong>往返枢纽');
-  // Chongzuo base - terracotta
-  L.marker([22.379,107.365], { icon: createIcon('🏠 崇左市区','#C67B5C') }).addTo(map)
-    .bindPopup('<strong>崇左市区</strong>租车+住宿基地');
-
-  // Day 1 markers
-  L.marker([22.515,107.255], { icon: createIcon('🛶 龙腾漂流','#6B8E4E') }).addTo(map)
-    .bindPopup('<strong>新和龙腾漂流</strong>Day 1 · 河陆空三连漂');
-  L.marker([22.393,107.362], { icon: createIcon('🏮 太平古城','#C67B5C') }).addTo(map)
-    .bindPopup('<strong>太平古城</strong>Day 1 夜 · 非遗打铁花');
-
-  // Day 2 markers
-  L.marker([22.856,106.728], { icon: createIcon('💦 德天瀑布','#3D3D3D') }).addTo(map)
-    .bindPopup('<strong>德天跨国瀑布</strong>Day 2 · 亚洲最大跨国瀑布');
-  L.marker([22.653,106.912], { icon: createIcon('🚴 明仕田园','#6B8E4E') }).addTo(map)
-    .bindPopup('<strong>明仕田园</strong>Day 2 · 骑行竹筏日落');
-
-  // Day 3 marker
-  L.marker([22.303,107.388], { icon: createIcon('🐒 白头叶猴','#C67B5C') }).addTo(map)
-    .bindPopup('<strong>白头叶猴保护区</strong>Day 3 · 比大熊猫稀有');
-
-  // Routes
-  L.polyline([[22.609,108.181],[22.379,107.365],[22.515,107.255],[22.393,107.362]], { color: day1Color, weight: 4, opacity: .65, dashArray: '10,8' }).addTo(map);
-  L.polyline([[22.379,107.365],[22.856,106.728],[22.653,106.912]], { color: day2Color, weight: 4, opacity: .65 }).addTo(map);
-  L.polyline([[22.379,107.365],[22.303,107.388],[22.609,108.181]], { color: day3Color, weight: 3, opacity: .5, dashArray: '8,6' }).addTo(map);
-
-  map.fitBounds([[22.2,106.5],[22.95,108.4]], { padding: [50,50] });
-})();
-</script>
 
 </body>
 </html>
