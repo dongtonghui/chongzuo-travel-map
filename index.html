@@ -170,7 +170,7 @@
   }
   #map {
     width: 100%;
-    height: 480px;
+    height: 520px;
     border-radius: 4px;
     z-index: 1;
   }
@@ -856,46 +856,55 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (function(){
-  var map = L.map('map', { scrollWheelZoom: false }).setView([22.55, 107.5], 10);
+  var map = L.map('map', { scrollWheelZoom: false }).setView([22.55, 107.5], 9);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+  // Light tile - CartoDB Positron (Baidu-like light gray)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
     maxZoom: 18
   }).addTo(map);
 
   var day1Color = '#C67B5C', day2Color = '#6B8E4E', day3Color = '#D4A574';
 
-  // Markers
-  var points = [
-    { name: '南宁吴圩机场', sub: '✈️ 往返枢纽', lat: 22.609, lon: 108.181, icon: '✈️' },
-    { name: '崇左市区', sub: '🏨 🚗 租车基地', lat: 22.379, lon: 107.365, icon: '🏠' },
-    { name: '新和龙腾漂流 🛶', sub: 'Day 1 · 河陆空三连漂', lat: 22.515, lon: 107.255, icon: '🛶' },
-    { name: '太平古城 🏮', sub: 'Day 1 夜 · 非遗打铁花', lat: 22.393, lon: 107.362, icon: '🏮' },
-    { name: '德天跨国瀑布 💦', sub: 'Day 2 · 亚洲最大跨国瀑布', lat: 22.856, lon: 106.728, icon: '💦' },
-    { name: '明仕田园 🚴', sub: 'Day 2 · 骑行竹筏日落', lat: 22.653, lon: 106.912, icon: '🚴' },
-    { name: '白头叶猴保护区 🐒', sub: 'Day 3 · 比大熊猫稀有', lat: 22.303, lon: 107.388, icon: '🐒' }
-  ];
-
-  var iconHtml = function(emoji) {
-    return L.divIcon({ html: '<div style="font-size:22px;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.2))">'+emoji+'</div>', className: '', iconSize: [28,28], iconAnchor: [14,14] });
+  // Bigger, labeled markers
+  var createIcon = function(label, bg) {
+    return L.divIcon({
+      html: '<div style="background:'+bg+';color:#FFF;border-radius:6px;padding:4px 10px;font-size:13px;font-family:Georgia,serif;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.15);border:2px solid #FFF;">'+label+'</div>',
+      className: '',
+      iconSize: [0,0],
+      iconAnchor: [0,0]
+    });
   };
 
-  points.forEach(function(p) {
-    L.marker([p.lat, p.lon], { icon: iconHtml(p.icon) })
-      .bindPopup('<strong>'+p.name+'</strong>'+p.sub)
-      .addTo(map);
-  });
+  // Airport - dark
+  L.marker([22.609,108.181], { icon: createIcon('✈️ 南宁吴圩机场','#3D3D3D') }).addTo(map)
+    .bindPopup('<strong>南宁吴圩机场</strong>往返枢纽');
+  // Chongzuo base - terracotta
+  L.marker([22.379,107.365], { icon: createIcon('🏠 崇左市区','#C67B5C') }).addTo(map)
+    .bindPopup('<strong>崇左市区</strong>租车+住宿基地');
+
+  // Day 1 markers
+  L.marker([22.515,107.255], { icon: createIcon('🛶 龙腾漂流','#6B8E4E') }).addTo(map)
+    .bindPopup('<strong>新和龙腾漂流</strong>Day 1 · 河陆空三连漂');
+  L.marker([22.393,107.362], { icon: createIcon('🏮 太平古城','#C67B5C') }).addTo(map)
+    .bindPopup('<strong>太平古城</strong>Day 1 夜 · 非遗打铁花');
+
+  // Day 2 markers
+  L.marker([22.856,106.728], { icon: createIcon('💦 德天瀑布','#3D3D3D') }).addTo(map)
+    .bindPopup('<strong>德天跨国瀑布</strong>Day 2 · 亚洲最大跨国瀑布');
+  L.marker([22.653,106.912], { icon: createIcon('🚴 明仕田园','#6B8E4E') }).addTo(map)
+    .bindPopup('<strong>明仕田园</strong>Day 2 · 骑行竹筏日落');
+
+  // Day 3 marker
+  L.marker([22.303,107.388], { icon: createIcon('🐒 白头叶猴','#C67B5C') }).addTo(map)
+    .bindPopup('<strong>白头叶猴保护区</strong>Day 3 · 比大熊猫稀有');
 
   // Routes
-  var route1 = [[22.609,108.181],[22.379,107.365],[22.515,107.255],[22.393,107.362]];
-  var route2 = [[22.379,107.365],[22.856,106.728],[22.653,106.912]];
-  var route3 = [[22.379,107.365],[22.303,107.388],[22.609,108.181]];
+  L.polyline([[22.609,108.181],[22.379,107.365],[22.515,107.255],[22.393,107.362]], { color: day1Color, weight: 4, opacity: .65, dashArray: '10,8' }).addTo(map);
+  L.polyline([[22.379,107.365],[22.856,106.728],[22.653,106.912]], { color: day2Color, weight: 4, opacity: .65 }).addTo(map);
+  L.polyline([[22.379,107.365],[22.303,107.388],[22.609,108.181]], { color: day3Color, weight: 3, opacity: .5, dashArray: '8,6' }).addTo(map);
 
-  L.polyline(route1, { color: day1Color, weight: 3, opacity: .7, dashArray: '8,6' }).addTo(map);
-  L.polyline(route2, { color: day2Color, weight: 3, opacity: .7 }).addTo(map);
-  L.polyline(route3, { color: day3Color, weight: 2.5, opacity: .5, dashArray: '6,5' }).addTo(map);
-
-  map.fitBounds([[22.2,106.5],[22.95,108.4]], { padding: [40,40] });
+  map.fitBounds([[22.2,106.5],[22.95,108.4]], { padding: [50,50] });
 })();
 </script>
 
